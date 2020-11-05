@@ -28,6 +28,10 @@ func (hsc *httpSignatureClient) requestApi(
 		url = fmt.Sprintf("%s/api/open/%s/%s", hsc.options.Endpoint, version, path)
 	}
 
+	if rsp == nil {
+		rsp = new(interface{})
+	}
+
 	return hsc.client.RequestApi(
 		url,
 		method,
