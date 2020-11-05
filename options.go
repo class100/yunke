@@ -1,7 +1,7 @@
 package yunke
 
 import (
-	`github.com/class100/core`
+	"github.com/class100/core"
 )
 
 type (
@@ -9,7 +9,7 @@ type (
 	Option func(*options)
 
 	options struct {
-		class100.ClientOptions
+		options []core.Option
 
 		// Endpoint 服务端点
 		Endpoint string
@@ -21,9 +21,16 @@ func defaultOptions() options {
 }
 
 // WithSecret 配置应用授权
-func WithSecret(secret class100.Secret) Option {
+func WithSecret(secret core.Secret) Option {
 	return func(options *options) {
-		options.ClientOptions.Secret = secret
+		options.options = append(options.options, core.WithSecret(secret))
+	}
+}
+
+// WithAlgorithms 配置签名算法
+func WithAlgorithms(algorithms ...core.SignatureAlgorithm) Option {
+	return func(options *options) {
+		options.options = append(options.options, core.WithAlgorithms(algorithms...))
 	}
 }
 

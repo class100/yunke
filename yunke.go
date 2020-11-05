@@ -1,10 +1,10 @@
 package yunke
 
 import (
-	`strings`
+	"strings"
 
-	`github.com/class100/core`
-	`github.com/class100/yunke-core`
+	"github.com/class100/core"
+	"github.com/class100/yunke-core"
 )
 
 // Client 云视课堂客户端
@@ -26,11 +26,11 @@ func NewClient(options ...Option) (client Client, err error) {
 		return
 	}
 
-	client = &httpSignatureClient{
-		client: class100.HttpSignatureClient{
-			Options: appliedOptions.ClientOptions,
-		},
+	hsc := &httpSignatureClient{
 		options: appliedOptions,
+	}
+	if hsc.client, err = core.NewHttpSignatureClient(appliedOptions.options...); nil != err {
+		return
 	}
 
 	return

@@ -1,15 +1,15 @@
 package yunke
 
 import (
-	`strconv`
+	"strconv"
 
-	`github.com/class100/core`
-	`github.com/class100/yunke-core`
+	"github.com/class100/core"
+	"github.com/class100/yunke-core"
 )
 
 func (hsc *httpSignatureClient) GetClient(id int64, version yunke.ApiVersion) (client *yunke.BaseClient, err error) {
 	client = new(yunke.BaseClient)
-	err = hsc.requestApi(yunke.OrgApiClientGetById, class100.HttpMethodGet, nil, nil, map[string]string{
+	err = hsc.requestApi(yunke.OrgApiClientGetById, core.HttpMethodGet, nil, nil, map[string]string{
 		"id": strconv.FormatInt(id, 10),
 	}, version, client)
 

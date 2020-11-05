@@ -11,4 +11,4 @@ require (
 // replace github.com/storezhang/gox => ../../storezhang/gox
 // replace github.com/storezhang/replace => ../../storezhang/replace
 // replace github.com/class100/yunke-core => ../yunke-core
-// replace github.com/class100/core => ../core
+replace github.com/class100/core => ../core
