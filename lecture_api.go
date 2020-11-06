@@ -20,6 +20,8 @@ type lectureHdl interface {
 	LectureGetsByCourseId(courseId int64, version core.ApiVersion) (chapters []*core.ChapterInfo, err error)
 	// LectureSwitchSequence 调整章节顺序
 	LectureSwitchSequence(req *core.SwitchSequenceReq, version core.ApiVersion) (lectures []*core.LectureInfo, err error)
+	// LectureFirstByCourseId 获取课程第一个章节讲次
+	LectureFirstByCourseId(courseId int64, version core.ApiVersion) (lecture *core.LectureInfo, err error)
 }
 
 func (hsc httpSignatureClient) LectureAdd(
@@ -122,6 +124,27 @@ func (hsc httpSignatureClient) LectureSwitchSequence(
 		nil,
 		version,
 		&lectures,
+	)
+
+	return
+}
+
+func (hsc httpSignatureClient) LectureFirstByCourseId(
+	courseId int64,
+	version core.ApiVersion,
+) (lecture *core.LectureInfo, err error) {
+	pathParams := map[string]string{
+		"courseId": fmt.Sprintf("%v", courseId),
+	}
+	lecture = new(core.LectureInfo)
+	err = hsc.requestApi(
+		core.LectureSwitchSequence,
+		class100.HttpMethodGet,
+		nil,
+		nil,
+		pathParams,
+		version,
+		&lecture,
 	)
 
 	return
