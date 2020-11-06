@@ -1,4 +1,4 @@
-module github.com/class100/sdk-go
+module github.com/class100/yunke
 
 go 1.15
 

@@ -3,7 +3,7 @@ package yunke
 import (
 	"strings"
 
-	"github.com/class100/core"
+	class100 "github.com/class100/core"
 )
 
 // Client 云视课堂客户端

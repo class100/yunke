@@ -3,7 +3,7 @@ package yunke
 import (
 	"fmt"
 
-	"github.com/class100/core"
+	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
 )
 
