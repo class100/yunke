@@ -138,7 +138,7 @@ func (hsc httpSignatureClient) LectureFirstByCourseId(
 	}
 	lecture = new(core.LectureInfo)
 	err = hsc.requestApi(
-		core.LectureSwitchSequence,
+		core.LectureFirstByCourseId,
 		class100.HttpMethodGet,
 		nil,
 		nil,
