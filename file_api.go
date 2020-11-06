@@ -57,7 +57,7 @@ func (hsc *httpSignatureClient) FileDownloadInfo(
 	return
 }
 
-func (hsc **httpSignatureClient) FileDelete(fileId string, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) FileDelete(fileId string, version core.ApiVersion) (err error) {
 	pathParams := map[string]string{
 		"fileId": fmt.Sprintf("%v", fileId),
 	}
