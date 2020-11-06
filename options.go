@@ -1,7 +1,7 @@
 package yunke
 
 import (
-	`github.com/class100/core`
+	"github.com/class100/core"
 )
 
 type (
