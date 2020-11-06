@@ -13,13 +13,13 @@ type courseTimeHdl interface {
 	CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq, version core.ApiVersion) (err error)
 }
 
-func (hsc httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq, version core.ApiVersion) (err error) {
 	err = hsc.requestApi(core.CourseTimeApiAdd, class100.HttpMethodPost, nil, req, nil, version, nil)
 
 	return
 }
 
-func (hsc httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq, version core.ApiVersion) (err error) {
 	err = hsc.requestApi(
 		core.CourseTimeApiDelete,
 		class100.HttpMethodDelete,

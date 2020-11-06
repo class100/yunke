@@ -8,7 +8,7 @@ import (
 )
 
 type httpSignatureClient struct {
-	client class100.HttpSignatureClient
+	client *class100.HttpSignatureClient
 
 	options options
 }

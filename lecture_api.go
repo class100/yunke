@@ -24,7 +24,7 @@ type lectureHdl interface {
 	LectureFirstByCourseId(courseId int64, version core.ApiVersion) (lecture *core.LectureInfo, err error)
 }
 
-func (hsc httpSignatureClient) LectureAdd(
+func (hsc *httpSignatureClient) LectureAdd(
 	req *core.AddLectureReq,
 	version core.ApiVersion,
 ) (lecture *core.LectureInfo, err error) {
@@ -34,7 +34,7 @@ func (hsc httpSignatureClient) LectureAdd(
 	return
 }
 
-func (hsc httpSignatureClient) LectureDelete(id int64, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) LectureDelete(id int64, version core.ApiVersion) (err error) {
 	pathParams := map[string]string{
 		"id": fmt.Sprintf("%v", id),
 	}
@@ -51,7 +51,7 @@ func (hsc httpSignatureClient) LectureDelete(id int64, version core.ApiVersion) 
 	return
 }
 
-func (hsc httpSignatureClient) LectureUpdate(
+func (hsc *httpSignatureClient) LectureUpdate(
 	id int64,
 	req map[string]interface{},
 	version core.ApiVersion,
@@ -73,7 +73,7 @@ func (hsc httpSignatureClient) LectureUpdate(
 	return
 }
 
-func (hsc httpSignatureClient) LectureGetById(id int64, version core.ApiVersion) (lecture *core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) LectureGetById(id int64, version core.ApiVersion) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
 
 	pathParams := map[string]string{
@@ -92,7 +92,7 @@ func (hsc httpSignatureClient) LectureGetById(id int64, version core.ApiVersion)
 	return
 }
 
-func (hsc httpSignatureClient) LectureGetsByCourseId(
+func (hsc *httpSignatureClient) LectureGetsByCourseId(
 	courseId int64,
 	version core.ApiVersion,
 ) (chapters []*core.ChapterInfo, err error) {
@@ -112,7 +112,7 @@ func (hsc httpSignatureClient) LectureGetsByCourseId(
 	return
 }
 
-func (hsc httpSignatureClient) LectureSwitchSequence(
+func (hsc *httpSignatureClient) LectureSwitchSequence(
 	req *core.SwitchSequenceReq,
 	version core.ApiVersion,
 ) (lectures []*core.LectureInfo, err error) {
@@ -129,7 +129,7 @@ func (hsc httpSignatureClient) LectureSwitchSequence(
 	return
 }
 
-func (hsc httpSignatureClient) LectureFirstByCourseId(
+func (hsc *httpSignatureClient) LectureFirstByCourseId(
 	courseId int64,
 	version core.ApiVersion,
 ) (lecture *core.LectureInfo, err error) {

@@ -18,14 +18,14 @@ type userHdl interface {
 	) (course *core.User, err error)
 }
 
-func (hsc httpSignatureClient) UserAdd(req *core.AddUserReq, version core.ApiVersion) (user *core.User, err error) {
+func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq, version core.ApiVersion) (user *core.User, err error) {
 	user = new(core.User)
 	err = hsc.requestApi(core.UserApiAdd, class100.HttpMethodPost, nil, req, nil, version, user)
 
 	return
 }
 
-func (hsc httpSignatureClient) UserDelete(id int64, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) UserDelete(id int64, version core.ApiVersion) (err error) {
 	pathParams := map[string]string{
 		"id": fmt.Sprintf("%v", id),
 	}
@@ -34,7 +34,7 @@ func (hsc httpSignatureClient) UserDelete(id int64, version core.ApiVersion) (er
 	return
 }
 
-func (hsc httpSignatureClient) UserUpdate(
+func (hsc *httpSignatureClient) UserUpdate(
 	id int64,
 	params map[string]interface{},
 	version core.ApiVersion,

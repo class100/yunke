@@ -17,14 +17,14 @@ type courseHdl interface {
 	CourseUpdate(id int64, params map[string]interface{}, version core.ApiVersion) (course *core.Course, err error)
 }
 
-func (hsc httpSignatureClient) CourseAdd(req *core.AddCourseReq, version core.ApiVersion) (course *core.Course, err error) {
+func (hsc *httpSignatureClient) CourseAdd(req *core.AddCourseReq, version core.ApiVersion) (course *core.Course, err error) {
 	course = new(core.Course)
 	err = hsc.requestApi(core.CourseApiAdd, class100.HttpMethodPost, nil, req, nil, version, course)
 
 	return
 }
 
-func (hsc httpSignatureClient) CourseDelete(id int64, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) CourseDelete(id int64, version core.ApiVersion) (err error) {
 	pathParams := map[string]string{
 		"id": fmt.Sprintf("%v", id),
 	}
@@ -33,7 +33,7 @@ func (hsc httpSignatureClient) CourseDelete(id int64, version core.ApiVersion) (
 	return
 }
 
-func (hsc httpSignatureClient) CourseUpdate(
+func (hsc *httpSignatureClient) CourseUpdate(
 	id int64,
 	params map[string]interface{},
 	version core.ApiVersion,

@@ -16,7 +16,7 @@ type fileHdl interface {
 	FileDelete(fileId string, version core.ApiVersion) (err error)
 }
 
-func (hsc httpSignatureClient) FileUploadInfo(
+func (hsc *httpSignatureClient) FileUploadInfo(
 	req *core.UploadFileReq,
 	version core.ApiVersion,
 ) (rsp *core.FileUploadRsp, err error) {
@@ -30,7 +30,7 @@ func (hsc httpSignatureClient) FileUploadInfo(
 	return
 }
 
-func (hsc httpSignatureClient) FileDownloadInfo(
+func (hsc *httpSignatureClient) FileDownloadInfo(
 	req *core.GetDownloadReq,
 	version core.ApiVersion,
 ) (rsp *core.GetDownloadRsp, err error) {
@@ -57,7 +57,7 @@ func (hsc httpSignatureClient) FileDownloadInfo(
 	return
 }
 
-func (hsc *httpSignatureClient) FileDelete(fileId string, version core.ApiVersion) (err error) {
+func (hsc **httpSignatureClient) FileDelete(fileId string, version core.ApiVersion) (err error) {
 	pathParams := map[string]string{
 		"fileId": fmt.Sprintf("%v", fileId),
 	}
