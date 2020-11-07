@@ -133,7 +133,7 @@ func (hsc *httpSignatureClient) LectureFirstByCourseId(
 	courseId int64,
 	version core.ApiVersion,
 ) (lecture *core.LectureInfo, err error) {
-	pathParams := map[string]string{
+	params := map[string]string{
 		"courseId": fmt.Sprintf("%v", courseId),
 	}
 	lecture = new(core.LectureInfo)
@@ -142,7 +142,7 @@ func (hsc *httpSignatureClient) LectureFirstByCourseId(
 		class100.HttpMethodGet,
 		nil,
 		nil,
-		pathParams,
+		params,
 		version,
 		&lecture,
 	)
