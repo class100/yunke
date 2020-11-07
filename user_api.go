@@ -44,7 +44,7 @@ func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
 func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface{}) (user *core.User, err error) {
 	user = new(core.User)
 	err = hsc.requestApi(
-		core.CourseApiUpdate,
+		core.UserApiUpdate,
 		class100.HttpMethodPut,
 		params, map[string]string{
 			"id": strconv.FormatInt(id, 10),
