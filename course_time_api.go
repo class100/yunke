@@ -5,28 +5,34 @@ import (
 	"github.com/class100/yunke-core"
 )
 
-// courseTimeHdl 课程时刻接口
-type courseTimeHdl interface {
+// courseTimer 课程时刻接口
+type courseTimer interface {
 	// CourseTimeAdds 添加课程
-	CourseTimeAdds(req *core.BatchAddCourseTimeReq, version core.ApiVersion) (err error)
+	CourseTimeAdds(req *core.BatchAddCourseTimeReq) (err error)
 	// CourseTimeDeletes 删除课程
-	CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq, version core.ApiVersion) (err error)
+	CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq) (err error)
 }
 
-func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq, version core.ApiVersion) (err error) {
-	err = hsc.requestApi(core.CourseTimeApiAdd, class100.HttpMethodPost, nil, req, nil, version, nil)
+func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq) (err error) {
+	err = hsc.requestApi(
+		core.CourseTimeApiAdd,
+		class100.HttpMethodPost,
+		nil, req, nil,
+		core.ApiVersionDefault,
+		nil,
+	)
 
 	return
 }
 
-func (hsc *httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq, version core.ApiVersion) (err error) {
+func (hsc *httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq) (err error) {
 	err = hsc.requestApi(
 		core.CourseTimeApiDelete,
 		class100.HttpMethodDelete,
 		nil,
 		req,
 		nil,
-		version,
+		core.ApiVersionDefault,
 		nil,
 	)
 

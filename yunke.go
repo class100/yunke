@@ -8,11 +8,11 @@ import (
 
 // Client 云视课堂客户端
 type Client interface {
-	courseHdl
-	courseTimeHdl
-	fileHdl
-	lectureHdl
-	userHdl
+	courser
+	courseTimer
+	filer
+	lecturer
+	user
 }
 
 // NewClient 创建云视课堂客户端
