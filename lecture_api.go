@@ -141,8 +141,8 @@ func (hsc *httpSignatureClient) LectureFirstByCourseId(
 		core.LectureFirstByCourseId,
 		class100.HttpMethodGet,
 		nil,
-		nil,
 		params,
+		nil,
 		version,
 		&lecture,
 	)
