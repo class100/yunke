@@ -1,7 +1,7 @@
 package yunke
 
 import (
-	"fmt"
+	`strconv`
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
@@ -38,15 +38,12 @@ func (hsc *httpSignatureClient) LectureAdd(req *core.AddLectureReq) (lecture *co
 }
 
 func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", id),
-	}
 	err = hsc.requestApi(
 		core.LectureApiDeleteById,
 		class100.HttpMethodDelete,
-		nil,
-		nil,
-		pathParams,
+		nil, nil, map[string]string{
+			"id": strconv.FormatInt(id, 10),
+		},
 		core.ApiVersionDefault,
 		nil,
 	)
@@ -56,15 +53,13 @@ func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
 
 func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface{}) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", id),
-	}
+
 	err = hsc.requestApi(
 		core.LectureApiUpdate,
 		class100.HttpMethodPut,
-		nil,
-		req,
-		pathParams,
+		nil, req, map[string]string{
+			"id": strconv.FormatInt(id, 10),
+		},
 		core.ApiVersionDefault,
 		lecture,
 	)
@@ -75,15 +70,12 @@ func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface
 func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
 
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", id),
-	}
 	err = hsc.requestApi(
 		core.LectureApiGetById,
 		class100.HttpMethodGet,
-		nil,
-		nil,
-		pathParams,
+		nil, nil, map[string]string{
+			"id": strconv.FormatInt(id, 10),
+		},
 		core.ApiVersionDefault,
 		lecture,
 	)
@@ -92,15 +84,12 @@ func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureI
 }
 
 func (hsc *httpSignatureClient) LectureGetsByCourseId(courseId int64) (chapters []*core.ChapterInfo, err error) {
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", courseId),
-	}
 	err = hsc.requestApi(
 		core.LectureApiGetByCourseId,
 		class100.HttpMethodGet,
-		nil,
-		nil,
-		pathParams,
+		nil, nil, map[string]string{
+			"id": strconv.FormatInt(courseId, 10),
+		},
 		core.ApiVersionDefault,
 		&chapters,
 	)

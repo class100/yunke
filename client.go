@@ -17,7 +17,7 @@ func (hsc *httpSignatureClient) requestApi(
 	path core.ApiPath,
 	method class100.HttpMethod,
 	headers map[string]string,
-	params interface{}, pathParams map[string]string,
+	params interface{}, paths map[string]string,
 	version core.ApiVersion,
 	rsp interface{},
 ) (err error) {
@@ -36,7 +36,7 @@ func (hsc *httpSignatureClient) requestApi(
 		url,
 		method,
 		headers,
-		params, pathParams,
+		params, paths,
 		rsp,
 	)
 }
