@@ -1,7 +1,7 @@
 package yunke
 
 import (
-	"fmt"
+	`strconv`
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
@@ -28,13 +28,12 @@ func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, 
 }
 
 func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", id),
-	}
 	err = hsc.requestApi(
 		core.UserTeacherApiDelete,
 		class100.HttpMethodDelete,
-		nil, pathParams,
+		nil, map[string]string{
+			"id": strconv.FormatInt(id, 10),
+		},
 		core.ApiVersionDefault,
 		nil,
 	)
@@ -44,14 +43,12 @@ func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
 
 func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface{}) (user *core.User, err error) {
 	user = new(core.User)
-
-	pathParams := map[string]string{
-		"id": fmt.Sprintf("%v", id),
-	}
 	err = hsc.requestApi(
 		core.CourseApiUpdate,
 		class100.HttpMethodPut,
-		params, pathParams,
+		params, map[string]string{
+			"id": strconv.FormatInt(id, 10),
+		},
 		core.ApiVersionDefault,
 		user,
 	)

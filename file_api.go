@@ -1,8 +1,6 @@
 package yunke
 
 import (
-	"fmt"
-
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
 )
@@ -35,14 +33,12 @@ func (hsc *httpSignatureClient) FileUploadInfo(req *core.UploadFileReq) (rsp *co
 
 func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp *core.GetDownloadRsp, err error) {
 	rsp = new(core.GetDownloadRsp)
-	pathParams := map[string]string{
-		"fileId": fmt.Sprintf("%v", req.FileId),
-	}
-
 	err = hsc.requestApi(
 		core.FileApiDownloadGet,
 		class100.HttpMethodGet,
-		req, pathParams,
+		req, map[string]string{
+			"fileId": req.FileId,
+		},
 		core.ApiVersionDefault,
 		rsp,
 	)
@@ -51,14 +47,12 @@ func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp 
 }
 
 func (hsc *httpSignatureClient) FileDelete(fileId string) (err error) {
-	pathParams := map[string]string{
-		"fileId": fmt.Sprintf("%v", fileId),
-	}
-
 	err = hsc.requestApi(
 		core.FileApiDelete,
 		class100.HttpMethodDelete,
-		nil, pathParams,
+		nil, map[string]string{
+			"fileId": fileId,
+		},
 		core.ApiVersionDefault,
 		nil,
 	)
