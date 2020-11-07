@@ -17,7 +17,7 @@ func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq) 
 	err = hsc.requestApi(
 		core.CourseTimeApiAdd,
 		class100.HttpMethodPost,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		nil,
 	)
@@ -29,7 +29,7 @@ func (hsc *httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTim
 	err = hsc.requestApi(
 		core.CourseTimeApiDelete,
 		class100.HttpMethodDelete,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		nil,
 	)

@@ -5,6 +5,7 @@ import (
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
+	`github.com/storezhang/gox`
 )
 
 // courser 课程接口
@@ -22,7 +23,7 @@ func (hsc *httpSignatureClient) CourseAdd(req *core.AddCourseReq) (course *core.
 	err = hsc.requestApi(
 		core.CourseApiAdd,
 		class100.HttpMethodPost,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		course,
 	)
@@ -34,11 +35,10 @@ func (hsc *httpSignatureClient) CourseDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.CourseApiDelete,
 		class100.HttpMethodDelete,
-		nil, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		nil,
 		core.ApiVersionDefault,
 		nil,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return
@@ -49,11 +49,10 @@ func (hsc *httpSignatureClient) CourseUpdate(id int64, params map[string]interfa
 	err = hsc.requestApi(
 		core.CourseApiUpdate,
 		class100.HttpMethodPut,
-		params, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		params,
 		core.ApiVersionDefault,
 		course,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return

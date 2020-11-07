@@ -3,6 +3,7 @@ package yunke
 import (
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
+	`github.com/storezhang/gox`
 )
 
 type filer interface {
@@ -23,7 +24,7 @@ func (hsc *httpSignatureClient) FileUploadInfo(req *core.UploadFileReq) (rsp *co
 	err = hsc.requestApi(
 		core.FileApiUploadGet,
 		class100.HttpMethodGet,
-		params, nil,
+		params,
 		core.ApiVersionDefault,
 		rsp,
 	)
@@ -36,11 +37,10 @@ func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp 
 	err = hsc.requestApi(
 		core.FileApiDownloadGet,
 		class100.HttpMethodGet,
-		req, map[string]string{
-			"fileId": req.FileId,
-		},
+		req,
 		core.ApiVersionDefault,
 		rsp,
+		gox.NewHttpPathParameter("fileId", req.FileId),
 	)
 
 	return
@@ -50,11 +50,10 @@ func (hsc *httpSignatureClient) FileDelete(fileId string) (err error) {
 	err = hsc.requestApi(
 		core.FileApiDelete,
 		class100.HttpMethodDelete,
-		nil, map[string]string{
-			"fileId": fileId,
-		},
+		nil,
 		core.ApiVersionDefault,
 		nil,
+		gox.NewHttpPathParameter("fileId", fileId),
 	)
 
 	return

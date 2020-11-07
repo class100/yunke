@@ -5,6 +5,7 @@ import (
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
+	`github.com/storezhang/gox`
 )
 
 type httpSignatureClient struct {
@@ -16,10 +17,10 @@ type httpSignatureClient struct {
 func (hsc *httpSignatureClient) requestApi(
 	path core.ApiPath,
 	method class100.HttpMethod,
-	params interface{}, paths map[string]string,
+	data interface{},
 	version core.ApiVersion,
 	rsp interface{},
-	headers ...class100.Header,
+	params ...gox.HttpParameter,
 ) (err error) {
 	var url string
 	if core.ApiVersionDefault == version {
@@ -32,11 +33,5 @@ func (hsc *httpSignatureClient) requestApi(
 		rsp = new(interface{})
 	}
 
-	return hsc.client.RequestApi(
-		url,
-		method,
-		params, paths,
-		rsp,
-		headers...,
-	)
+	return hsc.client.RequestApi(url, method, data, rsp, params...)
 }

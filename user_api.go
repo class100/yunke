@@ -5,6 +5,7 @@ import (
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
+	`github.com/storezhang/gox`
 )
 
 type user interface {
@@ -19,7 +20,7 @@ func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, 
 	err = hsc.requestApi(
 		core.UserApiAdd,
 		class100.HttpMethodPost,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		user,
 	)
@@ -31,11 +32,10 @@ func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.UserTeacherApiDelete,
 		class100.HttpMethodDelete,
-		nil, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		nil,
 		core.ApiVersionDefault,
 		nil,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return
@@ -46,11 +46,10 @@ func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface
 	err = hsc.requestApi(
 		core.UserApiUpdate,
 		class100.HttpMethodPut,
-		params, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		params,
 		core.ApiVersionDefault,
 		user,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return

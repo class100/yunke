@@ -5,6 +5,7 @@ import (
 
 	class100 "github.com/class100/core"
 	"github.com/class100/yunke-core"
+	`github.com/storezhang/gox`
 )
 
 type lecturer interface {
@@ -29,7 +30,7 @@ func (hsc *httpSignatureClient) LectureAdd(req *core.AddLectureReq) (lecture *co
 	err = hsc.requestApi(
 		core.LectureApiAdd,
 		class100.HttpMethodPost,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		lecture,
 	)
@@ -41,11 +42,10 @@ func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.LectureApiDeleteById,
 		class100.HttpMethodDelete,
-		nil, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		nil,
 		core.ApiVersionDefault,
 		nil,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return
@@ -57,11 +57,10 @@ func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface
 	err = hsc.requestApi(
 		core.LectureApiUpdate,
 		class100.HttpMethodPut,
-		req, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		req,
 		core.ApiVersionDefault,
 		lecture,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return
@@ -73,11 +72,10 @@ func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureI
 	err = hsc.requestApi(
 		core.LectureApiGetById,
 		class100.HttpMethodGet,
-		nil, map[string]string{
-			"id": strconv.FormatInt(id, 10),
-		},
+		nil,
 		core.ApiVersionDefault,
 		lecture,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(id, 10)),
 	)
 
 	return
@@ -87,11 +85,10 @@ func (hsc *httpSignatureClient) LectureGetsByCourseId(courseId int64) (chapters 
 	err = hsc.requestApi(
 		core.LectureApiGetByCourseId,
 		class100.HttpMethodGet,
-		nil, map[string]string{
-			"id": strconv.FormatInt(courseId, 10),
-		},
+		nil,
 		core.ApiVersionDefault,
 		&chapters,
+		gox.NewHttpPathParameter("id", strconv.FormatInt(courseId, 10)),
 	)
 
 	return
@@ -101,7 +98,7 @@ func (hsc *httpSignatureClient) LectureSwitchSequence(req *core.SwitchSequenceRe
 	err = hsc.requestApi(
 		core.LectureSwitchSequence,
 		class100.HttpMethodPost,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		&lectures,
 	)
@@ -117,7 +114,7 @@ func (hsc *httpSignatureClient) LectureFirstByCourseId(courseId int64) (lecture 
 	err = hsc.requestApi(
 		core.LectureFirstByCourseId,
 		class100.HttpMethodGet,
-		req, nil,
+		req,
 		core.ApiVersionDefault,
 		&lecture,
 	)
