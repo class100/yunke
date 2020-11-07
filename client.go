@@ -16,10 +16,10 @@ type httpSignatureClient struct {
 func (hsc *httpSignatureClient) requestApi(
 	path core.ApiPath,
 	method class100.HttpMethod,
-	headers map[string]string,
 	params interface{}, paths map[string]string,
 	version core.ApiVersion,
 	rsp interface{},
+	headers ...class100.Header,
 ) (err error) {
 	var url string
 	if core.ApiVersionDefault == version {
@@ -35,8 +35,8 @@ func (hsc *httpSignatureClient) requestApi(
 	return hsc.client.RequestApi(
 		url,
 		method,
-		headers,
 		params, paths,
 		rsp,
+		headers...,
 	)
 }

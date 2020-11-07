@@ -22,7 +22,7 @@ func (hsc *httpSignatureClient) CourseAdd(req *core.AddCourseReq) (course *core.
 	err = hsc.requestApi(
 		core.CourseApiAdd,
 		class100.HttpMethodPost,
-		nil, req, nil,
+		req, nil,
 		core.ApiVersionDefault,
 		course,
 	)
@@ -37,7 +37,7 @@ func (hsc *httpSignatureClient) CourseDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.CourseApiDelete,
 		class100.HttpMethodDelete,
-		nil, nil, pathParams,
+		nil, pathParams,
 		core.ApiVersionDefault,
 		nil,
 	)
@@ -53,7 +53,7 @@ func (hsc *httpSignatureClient) CourseUpdate(id int64, params map[string]interfa
 	err = hsc.requestApi(
 		core.CourseApiUpdate,
 		class100.HttpMethodPut,
-		nil, params, pathParams,
+		params, pathParams,
 		core.ApiVersionDefault,
 		course,
 	)

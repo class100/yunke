@@ -29,7 +29,7 @@ func (hsc *httpSignatureClient) LectureAdd(req *core.AddLectureReq) (lecture *co
 	err = hsc.requestApi(
 		core.LectureApiAdd,
 		class100.HttpMethodPost,
-		nil, req, nil,
+		req, nil,
 		core.ApiVersionDefault,
 		lecture,
 	)
@@ -41,7 +41,7 @@ func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.LectureApiDeleteById,
 		class100.HttpMethodDelete,
-		nil, nil, map[string]string{
+		nil, map[string]string{
 			"id": strconv.FormatInt(id, 10),
 		},
 		core.ApiVersionDefault,
@@ -57,7 +57,7 @@ func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface
 	err = hsc.requestApi(
 		core.LectureApiUpdate,
 		class100.HttpMethodPut,
-		nil, req, map[string]string{
+		req, map[string]string{
 			"id": strconv.FormatInt(id, 10),
 		},
 		core.ApiVersionDefault,
@@ -73,7 +73,7 @@ func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureI
 	err = hsc.requestApi(
 		core.LectureApiGetById,
 		class100.HttpMethodGet,
-		nil, nil, map[string]string{
+		nil, map[string]string{
 			"id": strconv.FormatInt(id, 10),
 		},
 		core.ApiVersionDefault,
@@ -87,7 +87,7 @@ func (hsc *httpSignatureClient) LectureGetsByCourseId(courseId int64) (chapters 
 	err = hsc.requestApi(
 		core.LectureApiGetByCourseId,
 		class100.HttpMethodGet,
-		nil, nil, map[string]string{
+		nil, map[string]string{
 			"id": strconv.FormatInt(courseId, 10),
 		},
 		core.ApiVersionDefault,
@@ -101,9 +101,7 @@ func (hsc *httpSignatureClient) LectureSwitchSequence(req *core.SwitchSequenceRe
 	err = hsc.requestApi(
 		core.LectureSwitchSequence,
 		class100.HttpMethodPost,
-		nil,
-		req,
-		nil,
+		req, nil,
 		core.ApiVersionDefault,
 		&lectures,
 	)
@@ -119,9 +117,7 @@ func (hsc *httpSignatureClient) LectureFirstByCourseId(courseId int64) (lecture 
 	err = hsc.requestApi(
 		core.LectureFirstByCourseId,
 		class100.HttpMethodGet,
-		nil,
-		req,
-		nil,
+		req, nil,
 		core.ApiVersionDefault,
 		&lecture,
 	)

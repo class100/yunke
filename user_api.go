@@ -19,7 +19,7 @@ func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, 
 	err = hsc.requestApi(
 		core.UserApiAdd,
 		class100.HttpMethodPost,
-		nil, req, nil,
+		req, nil,
 		core.ApiVersionDefault,
 		user,
 	)
@@ -34,7 +34,7 @@ func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
 	err = hsc.requestApi(
 		core.UserTeacherApiDelete,
 		class100.HttpMethodDelete,
-		nil, nil, pathParams,
+		nil, pathParams,
 		core.ApiVersionDefault,
 		nil,
 	)
@@ -51,7 +51,7 @@ func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface
 	err = hsc.requestApi(
 		core.CourseApiUpdate,
 		class100.HttpMethodPut,
-		nil, params, pathParams,
+		params, pathParams,
 		core.ApiVersionDefault,
 		user,
 	)

@@ -25,7 +25,7 @@ func (hsc *httpSignatureClient) FileUploadInfo(req *core.UploadFileReq) (rsp *co
 	err = hsc.requestApi(
 		core.FileApiUploadGet,
 		class100.HttpMethodGet,
-		nil, params, nil,
+		params, nil,
 		core.ApiVersionDefault,
 		rsp,
 	)
@@ -42,9 +42,7 @@ func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp 
 	err = hsc.requestApi(
 		core.FileApiDownloadGet,
 		class100.HttpMethodGet,
-		nil,
-		req,
-		pathParams,
+		req, pathParams,
 		core.ApiVersionDefault,
 		rsp,
 	)
@@ -60,9 +58,7 @@ func (hsc *httpSignatureClient) FileDelete(fileId string) (err error) {
 	err = hsc.requestApi(
 		core.FileApiDelete,
 		class100.HttpMethodDelete,
-		nil,
-		nil,
-		pathParams,
+		nil, pathParams,
 		core.ApiVersionDefault,
 		nil,
 	)
