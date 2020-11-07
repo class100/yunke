@@ -17,6 +17,8 @@ type Client interface {
 
 // NewClient 创建云视课堂客户端
 func NewClient(options ...Option) (client Client, err error) {
+	var hsc *core.HttpSignatureClient
+
 	appliedOptions := defaultOptions()
 	for _, apply := range options {
 		apply(&appliedOptions)
@@ -28,11 +30,12 @@ func NewClient(options ...Option) (client Client, err error) {
 		return
 	}
 
-	hsc := &httpSignatureClient{
-		options: appliedOptions,
-	}
-	if hsc.client, err = core.NewHttpSignatureClient(appliedOptions.options...); nil != err {
+	if hsc, err = core.NewHttpSignatureClient(appliedOptions.options...); nil != err {
 		return
+	}
+	client = &httpSignatureClient{
+		client:  hsc,
+		options: appliedOptions,
 	}
 
 	return
