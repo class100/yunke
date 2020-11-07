@@ -39,16 +39,11 @@ func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp 
 		"fileId": fmt.Sprintf("%v", req.FileId),
 	}
 
-	params := map[string]string{
-		"type": fmt.Sprintf("%v", req.Type),
-		"name": req.Name,
-	}
-
 	err = hsc.requestApi(
 		core.FileApiDownloadGet,
 		class100.HttpMethodGet,
 		nil,
-		params,
+		req,
 		pathParams,
 		core.ApiVersionDefault,
 		rsp,
