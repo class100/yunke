@@ -13,6 +13,7 @@ type Client interface {
 	filer
 	lecturer
 	user
+	meeting
 }
 
 // NewClient 创建云视课堂客户端
