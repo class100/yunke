@@ -3,8 +3,8 @@ module github.com/class100/yunke
 go 1.15
 
 require (
-	github.com/class100/core v0.0.7
-	github.com/class100/yunke-core v1.0.12
+	github.com/class100/core v0.0.8
+	github.com/class100/yunke-core v1.0.13
 	github.com/storezhang/gox v1.2.10
 )
 
