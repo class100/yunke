@@ -1,7 +1,7 @@
 package yunke
 
 import (
-	"github.com/class100/core"
+	`github.com/class100/core`
 )
 
 type (
@@ -38,5 +38,19 @@ func WithAlgorithms(algorithms ...core.SignatureAlgorithm) Option {
 func WithEndpoint(endpoint string) Option {
 	return func(options *options) {
 		options.Endpoint = endpoint
+	}
+}
+
+// WithProxy 配置代理
+func WithProxy(proxy string) Option {
+	return func(options *options) {
+		options.clientOptions = append(options.clientOptions, core.WithProxy(proxy))
+	}
+}
+
+// WithRetry 配置重试
+func WithRetry(retry core.Retry) Option {
+	return func(options *options) {
+		options.clientOptions = append(options.clientOptions, core.WithRetry(retry))
 	}
 }
