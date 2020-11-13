@@ -32,7 +32,7 @@ func NewClient(options ...Option) (client Client, err error) {
 		return
 	}
 
-	if hsc, err = core.NewHttpSignatureClient(appliedOptions.options...); nil != err {
+	if hsc, err = core.NewHttpSignatureClient(appliedOptions.clientOptions...); nil != err {
 		return
 	}
 	client = &httpSignatureClient{
