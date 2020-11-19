@@ -14,6 +14,8 @@ type Client interface {
 	lecturer
 	user
 	meeting
+	fileChunk
+	client
 }
 
 // NewClient 创建云视课堂客户端
