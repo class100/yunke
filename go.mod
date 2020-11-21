@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/class100/core v0.0.9
-	github.com/class100/yunke-core v1.1.8
+	github.com/class100/yunke-core v1.1.9
 	github.com/storezhang/gox v1.2.25
 )
 
