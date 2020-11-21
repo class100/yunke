@@ -16,7 +16,7 @@ type user interface {
 	// UserUpdate 更新用户
 	UserUpdate(id int64, params map[string]interface{}) (course *core.User, err error)
 	// UserGet 获取用户
-	UserGet(req *core.GetUserReq) (user *core.User, err error)
+	UserGet(req *core.GetUserReq) (rsp *core.GetUserRsp, err error)
 }
 
 func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, err error) {
@@ -59,14 +59,14 @@ func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface
 	return
 }
 
-func (hsc *httpSignatureClient) UserGet(req *core.GetUserReq) (user *core.User, err error) {
-	user = new(core.User)
+func (hsc *httpSignatureClient) UserGet(req *core.GetUserReq) (rsp *core.GetUserRsp, err error) {
+	rsp = new(core.GetUserRsp)
 	err = hsc.requestApi(
 		core.UserApiGet,
 		class100.HttpMethodGet,
 		req,
 		core.ApiVersionDefault,
-		user,
+		rsp,
 		gox.NewHttpPathParameter("id", req.Id),
 	)
 
