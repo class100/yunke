@@ -7,15 +7,15 @@ import (
 )
 
 type filer interface {
-	// FileUploadInfo 获取文件上传信息
-	FileUploadInfo(req *core.UploadFileReq) (rsp *core.FileUploadRsp, err error)
-	// GetDownloadInfo 获取文件下载信息
-	FileDownloadInfo(req *core.GetDownloadReq) (rsp *core.GetDownloadRsp, err error)
-	// FileDelete 删除上传文件
-	FileDelete(fileId string) (err error)
+	// GetUploadFileInfo 获取文件上传信息
+	GetUploadFileInfo(req *core.UploadFileReq) (rsp *core.FileUploadRsp, err error)
+	// GetDownloadFileInfo 获取文件下载信息
+	GetDownloadFileInfo(req *core.GetDownloadReq) (rsp *core.GetDownloadRsp, err error)
+	// DeleteFile 删除上传文件
+	DeleteFile(fileId string) (err error)
 }
 
-func (hsc *httpSignatureClient) FileUploadInfo(req *core.UploadFileReq) (rsp *core.FileUploadRsp, err error) {
+func (hsc *httpSignatureClient) GetUploadFileInfo(req *core.UploadFileReq) (rsp *core.FileUploadRsp, err error) {
 	rsp = new(core.FileUploadRsp)
 	params := make(map[string]string)
 	if 0 != len(req.FileId) {
@@ -32,7 +32,7 @@ func (hsc *httpSignatureClient) FileUploadInfo(req *core.UploadFileReq) (rsp *co
 	return
 }
 
-func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp *core.GetDownloadRsp, err error) {
+func (hsc *httpSignatureClient) GetDownloadFileInfo(req *core.GetDownloadReq) (rsp *core.GetDownloadRsp, err error) {
 	rsp = new(core.GetDownloadRsp)
 	err = hsc.requestApi(
 		core.FileApiDownloadGet,
@@ -46,7 +46,7 @@ func (hsc *httpSignatureClient) FileDownloadInfo(req *core.GetDownloadReq) (rsp 
 	return
 }
 
-func (hsc *httpSignatureClient) FileDelete(fileId string) (err error) {
+func (hsc *httpSignatureClient) DeleteFile(fileId string) (err error) {
 	err = hsc.requestApi(
 		core.FileApiDelete,
 		class100.HttpMethodDelete,

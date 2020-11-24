@@ -10,10 +10,10 @@ import (
 
 // client 客户端接口
 type client interface {
-	ClientGet(clientType core.ClientType) (rsp *core.GetClientRsp, err error)
+	GetClient(clientType core.ClientType) (rsp *core.GetClientRsp, err error)
 }
 
-func (hsc *httpSignatureClient) ClientGet(clientType core.ClientType) (rsp *core.GetClientRsp, err error) {
+func (hsc *httpSignatureClient) GetClient(clientType core.ClientType) (rsp *core.GetClientRsp, err error) {
 	rsp = new(core.GetClientRsp)
 	err = hsc.requestApi(
 		core.ClientApiGetByType,

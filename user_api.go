@@ -9,17 +9,17 @@ import (
 )
 
 type user interface {
-	// UserAdd 添加用户
-	UserAdd(req *core.AddUserReq) (user *core.User, err error)
-	// UserDelete 删除用户
-	UserDelete(id int64) (err error)
-	// UserUpdate 更新用户
-	UserUpdate(id int64, params map[string]interface{}) (course *core.User, err error)
-	// UserGet 获取用户
-	UserGet(req *core.GetUserReq) (rsp *core.GetUserRsp, err error)
+	// AddUser 添加用户
+	AddUser(req *core.AddUserReq) (user *core.User, err error)
+	// DeleteUser 删除用户
+	DeleteUser(id int64) (err error)
+	// UpdateUser 更新用户
+	UpdateUser(id int64, params map[string]interface{}) (course *core.User, err error)
+	// GetUser 获取用户
+	GetUser(req *core.GetUserReq) (rsp *core.GetUserRsp, err error)
 }
 
-func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, err error) {
+func (hsc *httpSignatureClient) AddUser(req *core.AddUserReq) (user *core.User, err error) {
 	user = new(core.User)
 	err = hsc.requestApi(
 		core.UserApiAdd,
@@ -32,7 +32,7 @@ func (hsc *httpSignatureClient) UserAdd(req *core.AddUserReq) (user *core.User, 
 	return
 }
 
-func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
+func (hsc *httpSignatureClient) DeleteUser(id int64) (err error) {
 	err = hsc.requestApi(
 		core.UserTeacherApiDelete,
 		class100.HttpMethodDelete,
@@ -45,7 +45,7 @@ func (hsc *httpSignatureClient) UserDelete(id int64) (err error) {
 	return
 }
 
-func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface{}) (user *core.User, err error) {
+func (hsc *httpSignatureClient) UpdateUser(id int64, params map[string]interface{}) (user *core.User, err error) {
 	user = new(core.User)
 	err = hsc.requestApi(
 		core.UserApiUpdate,
@@ -59,7 +59,7 @@ func (hsc *httpSignatureClient) UserUpdate(id int64, params map[string]interface
 	return
 }
 
-func (hsc *httpSignatureClient) UserGet(req *core.GetUserReq) (rsp *core.GetUserRsp, err error) {
+func (hsc *httpSignatureClient) GetUser(req *core.GetUserReq) (rsp *core.GetUserRsp, err error) {
 	rsp = new(core.GetUserRsp)
 	err = hsc.requestApi(
 		core.UserApiGet,
