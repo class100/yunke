@@ -23,7 +23,7 @@ func (hsc *httpSignatureClient) AddCourseContents(
 ) (rsp *core.AddCourseContentRsp, err error) {
 	rsp = new(core.AddCourseContentRsp)
 	err = hsc.requestApi(
-		core.CourseTimeApiAdd,
+		core.CourseContentApiAdd,
 		class100.HttpMethodPost,
 		req,
 		core.ApiVersionDefault,
