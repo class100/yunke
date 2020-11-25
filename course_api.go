@@ -10,15 +10,15 @@ import (
 
 // courser 课程接口
 type courser interface {
-	// CourseAdd 添加课程
-	CourseAdd(req *core.AddCourseReq) (course *core.Course, err error)
-	// CourseDelete 删除课程
-	CourseDelete(id int64) (err error)
-	// CourseUpdate 更新课程
-	CourseUpdate(id int64, params map[string]interface{}) (course *core.Course, err error)
+	// AddCourse 添加课程
+	AddCourse(req *core.AddCourseReq) (course *core.Course, err error)
+	// DeleteCourse 删除课程
+	DeleteCourse(id int64) (err error)
+	// UpdateCourse 更新课程
+	UpdateCourse(id int64, params map[string]interface{}) (course *core.Course, err error)
 }
 
-func (hsc *httpSignatureClient) CourseAdd(req *core.AddCourseReq) (course *core.Course, err error) {
+func (hsc *httpSignatureClient) AddCourse(req *core.AddCourseReq) (course *core.Course, err error) {
 	course = new(core.Course)
 	err = hsc.requestApi(
 		core.CourseApiAdd,
@@ -31,7 +31,7 @@ func (hsc *httpSignatureClient) CourseAdd(req *core.AddCourseReq) (course *core.
 	return
 }
 
-func (hsc *httpSignatureClient) CourseDelete(id int64) (err error) {
+func (hsc *httpSignatureClient) DeleteCourse(id int64) (err error) {
 	err = hsc.requestApi(
 		core.CourseApiDelete,
 		class100.HttpMethodDelete,
@@ -44,7 +44,7 @@ func (hsc *httpSignatureClient) CourseDelete(id int64) (err error) {
 	return
 }
 
-func (hsc *httpSignatureClient) CourseUpdate(id int64, params map[string]interface{}) (course *core.Course, err error) {
+func (hsc *httpSignatureClient) UpdateCourse(id int64, params map[string]interface{}) (course *core.Course, err error) {
 	course = new(core.Course)
 	err = hsc.requestApi(
 		core.CourseApiUpdate,

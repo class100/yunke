@@ -16,6 +16,7 @@ type Client interface {
 	meeting
 	fileChunk
 	client
+	courseContent
 }
 
 // NewClient 创建云视课堂客户端

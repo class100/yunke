@@ -10,8 +10,8 @@ type fileChunk interface {
 	InitiateMultipartUpload(req *core.InitiateMultipartUploadReq) (rsp *core.InitiateMultipartUploadRsp, err error)
 	// CompleteMultipartUpload 完成化分块上传信息
 	CompleteMultipartUpload(req *core.CompleteMultipartUploadReq) (err error)
-	// AbortMultipartUploadReq 取消分块上传
-	AbortMultipartUploadReq(req *core.AbortMultipartUploadReq) (err error)
+	// AbortMultipartUpload 取消分块上传
+	AbortMultipartUpload(req *core.AbortMultipartUploadReq) (err error)
 }
 
 func (hsc *httpSignatureClient) InitiateMultipartUpload(req *core.InitiateMultipartUploadReq) (rsp *core.InitiateMultipartUploadRsp, err error) {
@@ -39,7 +39,7 @@ func (hsc *httpSignatureClient) CompleteMultipartUpload(req *core.CompleteMultip
 	return
 }
 
-func (hsc *httpSignatureClient) AbortMultipartUploadReq(req *core.AbortMultipartUploadReq) (err error) {
+func (hsc *httpSignatureClient) AbortMultipartUpload(req *core.AbortMultipartUploadReq) (err error) {
 	err = hsc.requestApi(
 		core.FileApiDelete,
 		class100.HttpMethodDelete,

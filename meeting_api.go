@@ -6,13 +6,13 @@ import (
 )
 
 type meeting interface {
-	// MeetingJoin 加入会议
-	MeetingJoin(req *core.JoinMeetingReq) (rsp *core.JoinMeetingRsp, err error)
-	// 离开会议
-	MeetingLeave(req *core.LeaveMeetingReq) (err error)
+	// JoinMeeting 加入会议
+	JoinMeeting(req *core.JoinMeetingReq) (rsp *core.JoinMeetingRsp, err error)
+	// LeaveMeeting 离开会议
+	LeaveMeeting(req *core.LeaveMeetingReq) (err error)
 }
 
-func (hsc *httpSignatureClient) MeetingJoin(req *core.JoinMeetingReq) (rsp *core.JoinMeetingRsp, err error) {
+func (hsc *httpSignatureClient) JoinMeeting(req *core.JoinMeetingReq) (rsp *core.JoinMeetingRsp, err error) {
 	rsp = new(core.JoinMeetingRsp)
 
 	err = hsc.requestApi(
@@ -26,7 +26,7 @@ func (hsc *httpSignatureClient) MeetingJoin(req *core.JoinMeetingReq) (rsp *core
 	return
 }
 
-func (hsc *httpSignatureClient) MeetingLeave(req *core.LeaveMeetingReq) (err error) {
+func (hsc *httpSignatureClient) LeaveMeeting(req *core.LeaveMeetingReq) (err error) {
 	err = hsc.requestApi(
 		core.MeetingApiLeave,
 		class100.HttpMethodPost,

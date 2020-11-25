@@ -7,13 +7,13 @@ import (
 
 // courseTimer 课程时刻接口
 type courseTimer interface {
-	// CourseTimeAdds 添加课程
-	CourseTimeAdds(req *core.BatchAddCourseTimeReq) (err error)
+	// AddCourseTimes 添加课程
+	AddCourseTimes(req *core.BatchAddCourseTimeReq) (err error)
 	// CourseTimeDeletes 删除课程
-	CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq) (err error)
+	DeleteCourseTimes(req *core.BatchDeleteCourseTimeReq) (err error)
 }
 
-func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq) (err error) {
+func (hsc *httpSignatureClient) AddCourseTimes(req *core.BatchAddCourseTimeReq) (err error) {
 	err = hsc.requestApi(
 		core.CourseTimeApiAdd,
 		class100.HttpMethodPost,
@@ -25,7 +25,7 @@ func (hsc *httpSignatureClient) CourseTimeAdds(req *core.BatchAddCourseTimeReq) 
 	return
 }
 
-func (hsc *httpSignatureClient) CourseTimeDeletes(req *core.BatchDeleteCourseTimeReq) (err error) {
+func (hsc *httpSignatureClient) DeleteCourseTimes(req *core.BatchDeleteCourseTimeReq) (err error) {
 	err = hsc.requestApi(
 		core.CourseTimeApiDelete,
 		class100.HttpMethodDelete,

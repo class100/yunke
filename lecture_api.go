@@ -9,23 +9,23 @@ import (
 )
 
 type lecturer interface {
-	// LectureAdd 章节添加
-	LectureAdd(req *core.AddLectureReq) (lecture *core.LectureInfo, err error)
-	// LectureDelete 章节删除
-	LectureDelete(id int64) (err error)
+	// AddLecture 章节添加
+	AddLecture(req *core.AddLectureReq) (lecture *core.LectureInfo, err error)
+	// DeleteLecture 章节删除
+	DeleteLecture(id int64) (err error)
 	// LectureUpdate 章节更新
-	LectureUpdate(id int64, req map[string]interface{}) (lecture *core.LectureInfo, err error)
-	// LectureGetById 根据Id获取
-	LectureGetById(id int64) (lecture *core.LectureInfo, err error)
+	UpdateLecture(id int64, req map[string]interface{}) (lecture *core.LectureInfo, err error)
+	// GetLectureById 根据Id获取
+	GetLectureById(id int64) (lecture *core.LectureInfo, err error)
 	// LectureGetsByCourseId 根据课程Id获取
-	LectureGetsByCourseId(courseId int64) (chapters []*core.ChapterInfo, err error)
+	GetsLectureByCourseId(courseId int64) (chapters []*core.ChapterInfo, err error)
 	// LectureSwitchSequence 调整章节顺序
-	LectureSwitchSequence(req *core.SwitchSequenceReq) (lectures []*core.LectureInfo, err error)
+	SwitchLectureSequence(req *core.SwitchSequenceReq) (lectures []*core.LectureInfo, err error)
 	// LectureFirstByCourseId 获取课程第一个章节讲次
-	LectureFirstByCourseId(courseId int64) (lecture *core.LectureInfo, err error)
+	FirstLectureByCourseId(courseId int64) (lecture *core.LectureInfo, err error)
 }
 
-func (hsc *httpSignatureClient) LectureAdd(req *core.AddLectureReq) (lecture *core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) AddLecture(req *core.AddLectureReq) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
 	err = hsc.requestApi(
 		core.LectureApiAdd,
@@ -38,7 +38,7 @@ func (hsc *httpSignatureClient) LectureAdd(req *core.AddLectureReq) (lecture *co
 	return
 }
 
-func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
+func (hsc *httpSignatureClient) DeleteLecture(id int64) (err error) {
 	err = hsc.requestApi(
 		core.LectureApiDeleteById,
 		class100.HttpMethodDelete,
@@ -51,7 +51,7 @@ func (hsc *httpSignatureClient) LectureDelete(id int64) (err error) {
 	return
 }
 
-func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface{}) (lecture *core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) UpdateLecture(id int64, req map[string]interface{}) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
 
 	err = hsc.requestApi(
@@ -66,7 +66,7 @@ func (hsc *httpSignatureClient) LectureUpdate(id int64, req map[string]interface
 	return
 }
 
-func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) GetLectureById(id int64) (lecture *core.LectureInfo, err error) {
 	lecture = new(core.LectureInfo)
 
 	err = hsc.requestApi(
@@ -81,7 +81,7 @@ func (hsc *httpSignatureClient) LectureGetById(id int64) (lecture *core.LectureI
 	return
 }
 
-func (hsc *httpSignatureClient) LectureGetsByCourseId(courseId int64) (chapters []*core.ChapterInfo, err error) {
+func (hsc *httpSignatureClient) GetsLectureByCourseId(courseId int64) (chapters []*core.ChapterInfo, err error) {
 	err = hsc.requestApi(
 		core.LectureApiGetByCourseId,
 		class100.HttpMethodGet,
@@ -94,7 +94,7 @@ func (hsc *httpSignatureClient) LectureGetsByCourseId(courseId int64) (chapters 
 	return
 }
 
-func (hsc *httpSignatureClient) LectureSwitchSequence(req *core.SwitchSequenceReq) (lectures []*core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) SwitchLectureSequence(req *core.SwitchSequenceReq) (lectures []*core.LectureInfo, err error) {
 	err = hsc.requestApi(
 		core.LectureSwitchSequence,
 		class100.HttpMethodPost,
@@ -106,7 +106,7 @@ func (hsc *httpSignatureClient) LectureSwitchSequence(req *core.SwitchSequenceRe
 	return
 }
 
-func (hsc *httpSignatureClient) LectureFirstByCourseId(courseId int64) (lecture *core.LectureInfo, err error) {
+func (hsc *httpSignatureClient) FirstLectureByCourseId(courseId int64) (lecture *core.LectureInfo, err error) {
 	req := core.LectureFirstByCourseIdReq{
 		CourseId: courseId,
 	}
