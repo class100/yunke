@@ -17,6 +17,8 @@ type user interface {
 	UpdateUser(id int64, params map[string]interface{}) (course *core.User, err error)
 	// GetUser 获取用户
 	GetUser(req *core.GetUserReq) (rsp *core.GetUserRsp, err error)
+	// BatchAddUser 批量添加用户
+	BatchAddUser(req *core.BatchAddUserReq) (rsp *core.BatchAddUserRsp, err error)
 }
 
 func (hsc *httpSignatureClient) AddUser(req *core.AddUserReq) (user *core.User, err error) {
@@ -68,6 +70,19 @@ func (hsc *httpSignatureClient) GetUser(req *core.GetUserReq) (rsp *core.GetUser
 		core.ApiVersionDefault,
 		rsp,
 		gox.NewHttpPathParameter("id", req.Id),
+	)
+
+	return
+}
+
+func (hsc *httpSignatureClient) BatchAddUser(req *core.BatchAddUserReq) (rsp *core.BatchAddUserRsp, err error) {
+	rsp = new(core.BatchAddUserRsp)
+	err = hsc.requestApi(
+		core.UserApiBatchAdd,
+		class100.HttpMethodPost,
+		req,
+		core.ApiVersionDefault,
+		rsp,
 	)
 
 	return
