@@ -4,8 +4,8 @@ go 1.15
 
 require (
 	github.com/class100/core v0.0.9
-	github.com/class100/yunke-core v1.2.4
-	github.com/storezhang/gox v1.2.30
+	github.com/class100/yunke-core v1.2.17
+	github.com/storezhang/gox v1.2.32
 )
 
 // replace github.com/storezhang/gox => ../../storezhang/gox
