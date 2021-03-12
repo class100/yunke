@@ -1,10 +1,10 @@
 module github.com/class100/yunke
 
-go 1.15
+go 1.16
 
 require (
 	github.com/class100/core v0.0.9
-	github.com/class100/yunke-core v1.2.4
+	github.com/class100/yunke-core v1.2.18
 	github.com/storezhang/gox v1.2.30
 )
 
